@@ -21,15 +21,7 @@ end
 # a partir daqui, temos testes! :)
 
 class OmgError < StandardError; end
-
-begin
-  assert_raise(OmgError) {  }
-
-  raise AssertionError.new("Esperava exceção OmgError, mas nada consta! :(")
-rescue AssertionNotRaising
-  # Nada a fazer, `AssertionError` é o que queremos ver aqui! :)
-  # significa que o teste passou.
-end
+assert_raise(AssertionNotRaising) { assert_raise(OmgError) {} }
 
 assert true
 assert_raise(AssertionError) { assert false }
