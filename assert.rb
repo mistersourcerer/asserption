@@ -19,6 +19,9 @@ def assert_raise(error_type, &expectation)
   end
 end
 
+def assert_not_raise(&expectation)
+end
+
 def assert(expectation)
   raise AssertionError if !expectation
 end
@@ -27,5 +30,9 @@ end
 
 class NadaConstaError < StandardError; end
 assert_raise(NadaConstaError) { raise NadaConstaError.new }
+
+assert_raise(AssertionError) do
+  assert_not_raise { raise NadaConstaError.new }
+end
 
 assert_raise(AssertionError) { assert false }
