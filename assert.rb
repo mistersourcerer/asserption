@@ -41,24 +41,29 @@ end
 
 # daqui em diante tudo é teste :)
 
-# Garante que um bloco lança um exceção específica
-class NadaConstaError < StandardError; end
-assert_raise(NadaConstaError) { raise NadaConstaError.new }
+if ARGV[0] == "tests"
+  puts "testing..."
 
-# Garante ser possível verificar que um bloco NÃO lança exceção
-assert_raise(AssertionError) do
-  assert_not_raise { raise NadaConstaError.new }
+  class NadaConstaError < StandardError; end
+  class VasoRuimError < StandardError; end
+
+  # Garante que um bloco lança um exceção específica
+  assert_raise(NadaConstaError) { raise NadaConstaError.new }
+
+  # Garante ser possível verificar que um bloco NÃO lança exceção
+  assert_raise(AssertionError) do
+    assert_not_raise { raise NadaConstaError.new }
+  end
+
+  assert_raise(AssertionRaisingError) do
+    assert_raise(NadaConstaError) { raise VasoRuimError }
+  end
+
+  # Garante que assert lança exceções para expecativas de valor `falsey`
+  assert_raise(AssertionError) { assert false }
+  assert_raise(AssertionError) { assert nil }
+
+  # Garante que assert NÃO lança exceções se expecativas são `truthy`
+  assert_not_raise { assert true }
+  assert_not_raise { assert "yes" }
 end
-
-class VasoRuimError < StandardError; end
-assert_raise(AssertionRaisingError) do
-  assert_raise(NadaConstaError) { raise VasoRuimError }
-end
-
-# Garante que assert lança exceções para expecativas de valor `falsey`
-assert_raise(AssertionError) { assert false }
-assert_raise(AssertionError) { assert nil }
-
-# Garante que assert NÃO lança exceções se expecativas são `truthy`
-assert_not_raise { assert true }
-assert_not_raise { assert "yes" }
