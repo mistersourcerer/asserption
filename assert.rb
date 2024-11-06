@@ -14,4 +14,4 @@ def assert_raise(error_type, &expectation)
 end
 
 class NadaConstaError < StandardError; end
-assert_raise(NadaConstaError) {}
+assert_raise(NadaConstaError) { raise NadaConstaError.new }
