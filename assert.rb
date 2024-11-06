@@ -41,3 +41,4 @@ assert_raise(AssertionError) do
 end
 
 assert_raise(AssertionError) { assert false }
+assert_not_raise { assert true }
