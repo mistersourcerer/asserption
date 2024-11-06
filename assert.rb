@@ -20,6 +20,11 @@ def assert_raise(error_type, &expectation)
 end
 
 def assert_not_raise(&expectation)
+  begin
+    expectation.call
+  rescue StandardError
+    raise AssertionError.new
+  end
 end
 
 def assert(expectation)
