@@ -6,6 +6,15 @@ def assert(expectation)
 end
 
 def assert_raise(error, &expectation)
+  begin
+    expectation.call
+
+    # Se nenhum erro foi lançado após a execução no bloco,
+    # significa que a expectation falhou, pois deveria lançar.
+    raise AssertionNotRaising.new
+  rescue error
+    # Se o erro específico esperado foi lançado, então a expectiva é válida :)
+  end
 end
 
 
