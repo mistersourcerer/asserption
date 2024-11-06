@@ -19,6 +19,11 @@ def assert_raise(error, &expectation)
 end
 
 def assert_not_raise(&expectation)
+  begin
+    expectation.call
+  rescue StandardError => e
+    raise AssertionRaised.new("Wasn't expecting an exception but #{e} was raised.")
+  end
 end
 
 
