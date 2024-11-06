@@ -1,4 +1,5 @@
 class AssertionNotRaising < StandardError; end
+class AssertionError < StandardError; end
 
 def assert_raise(error_type, &expectation)
   begin
@@ -13,5 +14,12 @@ def assert_raise(error_type, &expectation)
   end
 end
 
+def assert(expectation)
+end
+
+# daqui em diante tudo é teste :)
+
 class NadaConstaError < StandardError; end
 assert_raise(NadaConstaError) { raise NadaConstaError.new }
+
+assert_raise(AssertionError) { assert false }
