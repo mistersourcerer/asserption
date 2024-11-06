@@ -20,6 +20,7 @@ def assert_raise(error_type, &expectation)
 end
 
 def assert(expectation)
+  raise AssertionError if !expectation
 end
 
 # daqui em diante tudo é teste :)
