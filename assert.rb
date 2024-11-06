@@ -20,6 +20,17 @@ end
 
 # a partir daqui, temos testes! :)
 
+class OmgError < StandardError; end
+
+begin
+  assert_raise(OmgError) {  }
+
+  raise AssertionError.new("Esperava exceção OmgError, mas nada consta! :(")
+rescue AssertionNotRaising
+  # Nada a fazer, `AssertionError` é o que queremos ver aqui! :)
+  # significa que o teste passou.
+end
+
 assert true
 
 begin
@@ -36,17 +47,6 @@ begin
 
   raise AssertionNotRaising.new
 rescue AssertionError
-  # Nada a fazer, `AssertionError` é o que queremos ver aqui! :)
-  # significa que o teste passou.
-end
-
-class OmgError < StandardError; end
-
-begin
-  assert_raise(OmgError) {  }
-
-  raise AssertionError.new("Esperava exceção OmgError, mas nada consta! :(")
-rescue AssertionNotRaising
   # Nada a fazer, `AssertionError` é o que queremos ver aqui! :)
   # significa que o teste passou.
 end
