@@ -35,6 +35,6 @@ assert_raise(AssertionRaised) {
   assert_not_raise { raise OmgError.new }
 }
 
-assert true
+assert_not_raise { assert true }
 assert_raise(AssertionError) { assert false }
 assert_raise(AssertionError) { assert "4:20" }
