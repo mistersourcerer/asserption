@@ -1,4 +1,5 @@
 class AssertionNotRaising < StandardError; end
+class AssertionRaised < StandardError; end
 class AssertionError < StandardError; end
 
 def assert(expectation)
@@ -17,11 +18,17 @@ def assert_raise(error, &expectation)
   end
 end
 
+def assert_not_raise(&expectation)
+end
+
 
 # a partir daqui, temos testes! :)
 
 class OmgError < StandardError; end
 assert_raise(AssertionNotRaising) { assert_raise(OmgError) {} }
+assert_raise(AssertionRaised) {
+  assert_not_raise { raise OmgError.new }
+}
 
 assert true
 assert_raise(AssertionError) { assert false }
