@@ -2,7 +2,7 @@ class AssertionNotRaising < StandardError; end
 class AssertionError < StandardError; end
 
 def assert(expectation)
-  raise AssertionError.new if !expectation
+  raise AssertionError.new if true != expectation
 end
 
 
