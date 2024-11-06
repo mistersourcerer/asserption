@@ -1,4 +1,9 @@
-class AssertionNotRaising < StandardError; end
+class AssertionNotRaising < StandardError
+  def initialize(error_expected)
+    super "Expected #{error_expected} to be raised, but it wasn't"
+  end
+end
+
 class AssertionError < StandardError; end
 
 def assert_raise(error_type, &expectation)
@@ -7,7 +12,7 @@ def assert_raise(error_type, &expectation)
 
     # Se a execução chegou aqui é sinal que nenhuma exceção foi lançada pelo
     # bloco, logo podemos considerar que o teste falhou.
-    raise AssertionNotRaising.new
+    raise AssertionNotRaising.new error_type
   rescue error_type
     # Nada a fazer, significa que o teste passou porque a execução da
     # expectation lançou a exceção esperada.
