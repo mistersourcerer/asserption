@@ -15,5 +15,6 @@ end
 
 class NadaConstaError < StandardError; end
 assert_raise(NadaConstaError) { raise NadaConstaError }
-
-assert_raise(NadaConstaError) {}
+assert_raise(AssertionNotRaising) do
+  assert_raise(NadaConstaError) {}
+end
