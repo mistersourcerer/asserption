@@ -25,6 +25,7 @@ def assert_not_raise(&expectation)
 end
 
 def assert(expectation)
+  raise AssertionError
 end
 
 class NadaConstaError < StandardError; end
