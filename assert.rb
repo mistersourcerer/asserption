@@ -29,4 +29,6 @@ assert_raise(AssertionNotRaising) do
   assert_raise(NadaConstaError) {}
 end
 
-assert_not_raise { raise NadaConstaError }
+assert_raise(AssertionRaising) do
+  assert_not_raise { raise NadaConstaError }
+end
