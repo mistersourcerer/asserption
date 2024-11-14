@@ -40,3 +40,4 @@ end
 assert_not_raise {}
 
 assert_raise(AssertionError) { assert 13 == 420 }
+assert_not_raise { assert 1 == 1 }
