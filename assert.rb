@@ -1,5 +1,6 @@
 class AssertionNotRaising < StandardError; end
 class AssertionRaising < StandardError; end
+class AssertionError < StandardError; end
 
 def assert_raise(error_type, &expectation)
   begin
@@ -23,6 +24,9 @@ def assert_not_raise(&expectation)
   end
 end
 
+def assert(expectation)
+end
+
 class NadaConstaError < StandardError; end
 assert_raise(NadaConstaError) { raise NadaConstaError }
 assert_raise(AssertionNotRaising) do
@@ -33,3 +37,5 @@ assert_raise(AssertionRaising) do
   assert_not_raise { raise NadaConstaError }
 end
 assert_not_raise {}
+
+assert_raise(AssertionError) { assert 13 == 420 }
