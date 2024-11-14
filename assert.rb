@@ -32,3 +32,4 @@ end
 assert_raise(AssertionRaising) do
   assert_not_raise { raise NadaConstaError }
 end
+assert_not_raise {}
