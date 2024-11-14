@@ -13,8 +13,14 @@ def assert_raise(error_type, &expectation)
   end
 end
 
+def assert_not_raise(&expectation)
+  expectation.call
+end
+
 class NadaConstaError < StandardError; end
 assert_raise(NadaConstaError) { raise NadaConstaError }
 assert_raise(AssertionNotRaising) do
   assert_raise(NadaConstaError) {}
 end
+
+assert_not_raise { raise NadaConstaError }
